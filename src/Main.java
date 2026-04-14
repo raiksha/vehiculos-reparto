@@ -18,7 +18,7 @@ public static void marcarVehiculo(){
     System.out.println("Vehiculos disponibles:");
     for (int i = 0; i < disponibles.size(); i++) {
         String vehiculos = disponibles.get(i);
-        String  = marcaVehiculo.get(vehiculo);
+        String marca = marcaVehiculo.get(vehiculo);
         System.out.println((i + 1) + ". " + animal + " (" + especie + ")");
     }
 
@@ -32,3 +32,4 @@ public static void marcarVehiculo(){
         scanner.nextLine();
         return;
     }
+}
