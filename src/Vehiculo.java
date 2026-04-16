@@ -7,11 +7,11 @@ public class Vehiculo {
     private boolean disponible;
 
     // Constructor
-    public Vehiculo(String patente, String marca, String modelo, double capacidadCarga) {
+    public Vehiculo(String patente, String marca, String modelo, double capacidadCarga, boolean disponible) {
         // Usamos los setters para aprovechar las validaciones desde el inicio
         setPatente(patente);
         setMarca(marca);
-        this.modelo = modelo;
+        setModelo(modelo);
         setCapacidadCarga(capacidadCarga);
         this.disponible = true; // Por defecto, todo vehículo inicia disponible
     }
@@ -45,6 +45,9 @@ public class Vehiculo {
     }
 
     public void setModelo(String modelo) {
+        if (modelo == null || modelo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El modelo no puede estar vacío.");
+        }
         this.modelo = modelo;
     }
 
