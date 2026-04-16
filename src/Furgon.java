@@ -2,8 +2,8 @@ public class Furgon extends Vehiculo {
     private double volumenInterior; // en metros cúbicos
 
     // Constructor
-    public Furgon(String patente, String marca, String modelo, double capacidadCarga, double volumenInterior) {
-        super(patente, marca, modelo, capacidadCarga); // llama al constructor de Vehiculo
+    public Furgon(String patente, String marca, String modelo, double capacidadCarga, boolean disponible, double volumenInterior) {
+        super(patente, marca, modelo, capacidadCarga, disponible); // llama al constructor de Vehiculo
         setVolumenInterior(volumenInterior); // usamos el setter para validar
     }
 
@@ -22,9 +22,7 @@ public class Furgon extends Vehiculo {
     // Sobrescritura del método mostrarDetalle (polimorfismo)
     @Override
     public void mostrarDetalle() {
-        System.out.println("--- FURGÓN ---");
         super.mostrarDetalle(); // muestra patente, marca, modelo, capacidad, disponible
-        System.out.println("Volumen interior: " + volumenInterior + " m³");
-        System.out.println("------------------------");
+        System.out.println(" | Volumen interior: " + volumenInterior + " m³");
     }
 }
