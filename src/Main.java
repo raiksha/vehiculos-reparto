@@ -52,7 +52,7 @@ public class Main {
     }
 
     public static void registrarCamion() {
-
+        // Julio
     }
 
     // Tu método registrarFurgon
@@ -73,6 +73,10 @@ public class Main {
         }
     }
 
+    public static void registrarMotoReparto() {
+        // Diego
+    }
+
     public static void mostrarTodosLosVehiculos(List<Vehiculo> vehiculos) {
         System.out.println("\n===============================================");
         System.out.println("       LISTADO COMPLETO DE VEHÍCULOS");
@@ -89,6 +93,10 @@ public class Main {
             }
         }
         System.out.println("===============================================\n");
+    }
+
+    public static void mostrarVehiculosDisponibles() {
+        // Alexander
     }
     
     public static void marcarVehiculo(){
