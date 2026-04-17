@@ -75,7 +75,25 @@ public class Main {
     }
 
     public static void registrarMotoReparto() {
-        // Diego
+        System.out.println("\n--- Registro de Moto de Reparto ---");
+
+        String patente = leerPatenteUnica();
+        String marca = leerStringNoVacio("Marca: ");
+        String modelo = leerStringNoVacio("Modelo: ");
+        double capacidad = leerDouble("Capacidad de carga (kg): ");
+        boolean disponible = true;
+
+        System.out.print("¿Tiene caja térmica? si/no: ");
+        String respuesta = scanner.nextLine().trim().toLowerCase();
+        boolean tieneCajaTermica = respuesta.equals("si");
+
+        try {
+            MotoReparto moto = new MotoReparto(patente, marca, modelo, capacidad, disponible, tieneCajaTermica);
+            vehiculos.add(moto);
+            System.out.println("Moto de reparto registrada con éxito.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     public static void mostrarTodosLosVehiculos() {
