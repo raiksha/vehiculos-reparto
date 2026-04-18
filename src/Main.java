@@ -52,6 +52,20 @@ public class Main {
     }
 
     public static void registrarCamion() {
+        System.out.println("\n--- Registro de Camión ---");
+
+        String patente = leerPatenteUnica();
+        String marca = leerStringNoVacio("Marca: ");
+        String modelo = leerStringNoVacio("Modelo: ");
+        int numEjes = leerEntero("Número de ejes: ");
+            try {
+                Camion camion = new Camion(patente, marca, modelo, numEjes);
+
+             vehiculos.add(camion);
+
+            System.out.println("✔ Camión registrado con éxito.");
+          } catch (IllegalArgumentException e) {
+            System.out.println("❌ Error al registrar: " + e.getMessage());
         // Julio
     }
 
