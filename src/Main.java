@@ -57,10 +57,12 @@ public class Main {
         String patente = leerPatenteUnica();
         String marca = leerStringNoVacio("Marca: ");
         String modelo = leerStringNoVacio("Modelo: ");
+        double capacidad = leerDouble("Capacidad de carga (kg): ");
+        boolean disponible = true;
         int numEjes = leerEntero("Número de ejes: ");
         
         try {
-            Camion camion = new Camion(patente, marca, modelo, numEjes);
+            Camion camion = new Camion(patente, marca, modelo, capacidad, disponible, numEjes);
             vehiculos.add(camion);
             System.out.println("✔ Camión registrado con éxito.");
         } catch (IllegalArgumentException e) {
