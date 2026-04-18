@@ -64,10 +64,13 @@ public class Main {
         try {
             Camion camion = new Camion(patente, marca, modelo, capacidad, disponible, numEjes);
             vehiculos.add(camion);
-            System.out.println(" Camión registrado con éxito.");
+            System.out.println("\n Camión registrado con éxito.");
         } catch (IllegalArgumentException e) {
-            System.out.println(" Error: " + e.getMessage());
+            System.out.println("\n Error: " + e.getMessage());
         }
+
+        System.out.println("\nPresione Enter para volver al menú...");
+        scanner.nextLine();
     }
 
     private static void registrarFurgon() {
@@ -82,10 +85,13 @@ public class Main {
         try {
             Furgon furgon = new Furgon(patente, marca, modelo, capacidad, disponible, volumen);
             vehiculos.add(furgon);
-            System.out.println(" Furgón registrado con éxito.");
+            System.out.println("\\n Furgón registrado con éxito.");
         } catch (IllegalArgumentException e) {
-            System.out.println(" Error: " + e.getMessage());
+            System.out.println("\n Error: " + e.getMessage());
         }
+
+        System.out.println("\nPresione Enter para volver al menú...");
+        scanner.nextLine();
     }
 
     public static void registrarMotoReparto() {
@@ -104,10 +110,13 @@ public class Main {
         try {
             MotoReparto moto = new MotoReparto(patente, marca, modelo, capacidad, disponible, tieneCajaTermica);
             vehiculos.add(moto);
-            System.out.println(" Moto de reparto registrada con éxito.");
+            System.out.println("\n Moto de reparto registrada con éxito.");
         } catch (IllegalArgumentException e) {
-            System.out.println(" Error: " + e.getMessage());
+            System.out.println("\n Error: " + e.getMessage());
         }
+
+        System.out.println("\nPresione Enter para volver al menú...");
+        scanner.nextLine();
     }
 
     public static void mostrarTodosLosVehiculos() {
@@ -126,6 +135,9 @@ public class Main {
             }
         }
         System.out.println("===============================================\n");
+
+        System.out.println("\nPresione Enter para volver al menú...");
+        scanner.nextLine();
     }
 
     public static void mostrarVehiculosDisponibles() {
@@ -148,10 +160,9 @@ public class Main {
         for (Vehiculo v : disponibles) {
             v.mostrarDetalle();
         }
-        
+
         System.out.println("\nPresione Enter para volver al menú...");
         scanner.nextLine();
-        return;
     }
     
     public static void marcarVehiculoNoDisponible() {
@@ -193,6 +204,7 @@ public class Main {
         vehiculoSeleccionado.setDisponible(false);
 
         System.out.println("\nEl vehículo con patente " + vehiculoSeleccionado.getPatente() + " ha sido marcado como NO disponible.");
+
         System.out.println("\nPresione Enter para volver al menú...");
         scanner.nextLine();
     }
@@ -256,6 +268,9 @@ public class Main {
                     // Operador ternario, es básicamente un if resumido
                     v.isDisponible() ? "Sí" : "No");
         }
+
+        System.out.println("\nPresione Enter para volver al menú...");
+        scanner.nextLine();
     }
   
     public static void salir() {
