@@ -34,20 +34,20 @@ public class Main {
 
     public static void mostrarMenu() {
 
-        System.out.println("╔════════════════════════════════════════╗");
-        System.out.println("║      === SISTEMA DE VEHICULOS ===      ║");
-        System.out.println("╠════════════════════════════════════════╣");
-        System.out.println("║   1. Registrar Camion                  ║");
-        System.out.println("║   2. Registrar Furgon                  ║");
-        System.out.println("║   3. Registrar Moto de Reparto         ║");
-        System.out.println("║   4. Mostrar todos los vehiculos       ║");
-        System.out.println("║   5. Mostrar vehiculos disponibles     ║");
-        System.out.println("║   6. Mostrar vehiculos no disponibles  ║");
-        System.out.println("║   7. Mostrar reporte general           ║");
-        System.out.println("║   8. Salir                             ║");
-        System.out.println("╠════════════════════════════════════════╣");
-        System.out.println("║           Elige una opción             ║");
-        System.out.println("╚════════════════════════════════════════╝");
+        System.out.println("╔══════════════════════════════════════════╗");
+        System.out.println("║      === SISTEMA DE VEHICULOS ===        ║");
+        System.out.println("╠══════════════════════════════════════════╣");
+        System.out.println("║   1. Registrar Camion                    ║");
+        System.out.println("║   2. Registrar Furgon                    ║");
+        System.out.println("║   3. Registrar Moto de Reparto           ║");
+        System.out.println("║   4. Mostrar todos los vehiculos         ║");
+        System.out.println("║   5. Mostrar vehiculos disponibles       ║");
+        System.out.println("║   6. Marcar vehiculo como no disponible  ║");
+        System.out.println("║   7. Mostrar reporte general             ║");
+        System.out.println("║   8. Salir                               ║");
+        System.out.println("╠══════════════════════════════════════════╣");
+        System.out.println("║           Elige una opción               ║");
+        System.out.println("╚══════════════════════════════════════════╝");
 
     }
 
@@ -97,7 +97,7 @@ public class Main {
         double capacidad = leerDouble("Capacidad de carga (kg): ");
         boolean disponible = true;
 
-        System.out.print("¿Tiene caja térmica? si/no: ");
+        System.out.print("¿Tiene caja térmica? (si/no): ");
         String respuesta = scanner.nextLine().trim().toLowerCase();
         boolean tieneCajaTermica = respuesta.equals("si");
 
