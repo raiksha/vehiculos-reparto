@@ -35,14 +35,14 @@ public class Main {
     public static void mostrarMenu() {
 
         System.out.println("╔══════════════════════════════════════════╗");
-        System.out.println("║      === SISTEMA DE VEHICULOS ===        ║");
+        System.out.println("║      === SISTEMA DE VEHÍCULOS ===        ║");
         System.out.println("╠══════════════════════════════════════════╣");
-        System.out.println("║   1. Registrar Camion                    ║");
-        System.out.println("║   2. Registrar Furgon                    ║");
+        System.out.println("║   1. Registrar Camión                    ║");
+        System.out.println("║   2. Registrar Furgón                    ║");
         System.out.println("║   3. Registrar Moto de Reparto           ║");
-        System.out.println("║   4. Mostrar todos los vehiculos         ║");
-        System.out.println("║   5. Mostrar vehiculos disponibles       ║");
-        System.out.println("║   6. Marcar vehiculo como no disponible  ║");
+        System.out.println("║   4. Mostrar todos los vehículos         ║");
+        System.out.println("║   5. Mostrar vehículos disponibles       ║");
+        System.out.println("║   6. Marcar vehículo como no disponible  ║");
         System.out.println("║   7. Mostrar reporte general             ║");
         System.out.println("║   8. Salir                               ║");
         System.out.println("╠══════════════════════════════════════════╣");
@@ -64,9 +64,9 @@ public class Main {
         try {
             Camion camion = new Camion(patente, marca, modelo, capacidad, disponible, numEjes);
             vehiculos.add(camion);
-            System.out.println("✔ Camión registrado con éxito.");
+            System.out.println(" Camión registrado con éxito.");
         } catch (IllegalArgumentException e) {
-            System.out.println("❌ Error al registrar: " + e.getMessage());
+            System.out.println(" Error: " + e.getMessage());
         }
     }
 
@@ -97,16 +97,16 @@ public class Main {
         double capacidad = leerDouble("Capacidad de carga (kg): ");
         boolean disponible = true;
 
-        System.out.print("¿Tiene caja térmica? (si/no): ");
+        System.out.print("¿Tiene caja térmica? (s/n): ");
         String respuesta = scanner.nextLine().trim().toLowerCase();
-        boolean tieneCajaTermica = respuesta.equals("si");
+        boolean tieneCajaTermica = respuesta.equals("s");
 
         try {
             MotoReparto moto = new MotoReparto(patente, marca, modelo, capacidad, disponible, tieneCajaTermica);
             vehiculos.add(moto);
-            System.out.println("Moto de reparto registrada con éxito.");
+            System.out.println(" Moto de reparto registrada con éxito.");
         } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(" Error: " + e.getMessage());
         }
     }
 
