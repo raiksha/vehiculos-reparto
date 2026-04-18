@@ -246,32 +246,19 @@ public class Main {
 
         System.out.printf("%-12s %-12s %-15s %-15s %-10s%n",
                 "Patente", "Tipo", "Marca", "Modelo", "Disponible");
-        System.out.println("-------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------");
 
         for (Vehiculo v : vehiculos) {
-            String tipo;
-            if (v instanceof Camion){
-                tipo = "Camión";
-            }
-            else if (v instanceof Furgon){
-                tipo = "Furgón";
-            }
-            else {
-                tipo = "Moto";
-            }
-            // Cambiar a v.mostrarDetalle()
             System.out.printf("%-12s %-12s %-15s %-15s %-10s%n",
                     v.getPatente(),
-                    tipo,
+                    v.getTipo(),
                     v.getMarca(),
                     v.getModelo(),
-                    // Operador ternario, es básicamente un if resumido
                     v.isDisponible() ? "Sí" : "No");
         }
-
         System.out.println("\nPresione Enter para volver al menú...");
         scanner.nextLine();
-    }
+    }   
   
     public static void salir() {
         System.out.println("\nCerrando sistema");
