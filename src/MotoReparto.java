@@ -18,6 +18,11 @@ public class MotoReparto extends Vehiculo {
     }
 
     @Override
+    public String getTipo() {
+        return "Moto de reparto";
+    }
+
+    @Override
     public void mostrarDetalle() {
         super.mostrarDetalle();
         System.out.println(" | Caja térmica: " + (tieneCajaTermica ? "Sí" : "No"));

@@ -19,6 +19,11 @@ public class Furgon extends Vehiculo {
         this.volumenInterior = volumenInterior;
     }
 
+    @Override
+    public String getTipo() {
+        return "Furgón";
+    }
+
     // Sobrescritura del método mostrarDetalle (polimorfismo)
     @Override
     public void mostrarDetalle() {

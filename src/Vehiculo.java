@@ -13,7 +13,7 @@ public class Vehiculo {
         setMarca(marca);
         setModelo(modelo);
         setCapacidadCarga(capacidadCarga);
-        this.disponible = true; // Por defecto, todo vehículo inicia disponible
+        setDisponible(disponible);
     }
 
     // --- Getters y Setters con Validaciones ---
@@ -71,13 +71,18 @@ public class Vehiculo {
     }
 
     /**
-     * Método que será sobrescrito por las clases hijas (Polimorfismo).
+     * Métodos que serán sobrescritos por las clases hijas (Polimorfismo).
      */
-    public void mostrarDetalle() {
-        System.out.print("Vehículo -> Patente: " + patente + 
-                         " | Marca: " + marca + 
-                         " | Modelo: " + modelo + 
-                         " | Capacidad: " + capacidadCarga + "kg" +
-                         " | Estado: " + (disponible ? "Disponible" : "No disponible"));
+
+    public String getTipo() {
+        return "Vehículo";
     }
+    public void mostrarDetalle() {
+    System.out.println("Vehículo -> " + getTipo()); // línea 1: el tipo lo pone la hija
+    System.out.print("    Patente: " + patente + 
+                     " | Marca: " + marca + 
+                     " | Modelo: " + modelo + 
+                     " | Capacidad: " + capacidadCarga + "kg" +
+                     " | Estado: " + (disponible ? "Disponible" : "No disponible"));
+}
 }
