@@ -51,17 +51,20 @@ java -cp out/ Main
 ## 📋 Ejemplo de uso del menú
 
 ```
-=== SISTEMA DE VEHÍCULOS DE REPARTO ===
-1. Registrar camión
-2. Registrar furgón
-3. Registrar moto de reparto
-4. Mostrar todos los vehículos
-5. Mostrar vehículos disponibles
-6. Marcar vehículo como no disponible
-7. Mostrar reporte general
-8. Salir
-
-TBD
+╔════════════════════════════════════════╗
+║      === SISTEMA DE VEHICULOS ===      ║
+╠════════════════════════════════════════╣
+║   1. Registrar Camion                  ║
+║   2. Registrar Furgon                  ║
+║   3. Registrar Moto de Reparto         ║
+║   4. Mostrar todos los vehiculos       ║
+║   5. Mostrar vehiculos disponibles     ║
+║   6. Mostrar vehiculos no disponibles  ║
+║   7. Mostrar reporte general           ║
+║   8. Salir                             ║
+╠════════════════════════════════════════╣
+║           Elige una opción             ║
+╚════════════════════════════════════════╝
 ```
 
 ---
@@ -74,9 +77,9 @@ TBD
 | Pablo Fuentes       | Clase `Vehiculo` — encapsulación, getters, setters y validaciones. Función mostrarTodosLosVehiculos().       |
 | Julio Oyarzun       | Clase `Camion` — herencia y sobrescritura de métodos. Función registrarCamion().                             |
 | Sary Viafara        | Clase `Furgon` — herencia y sobrescritura de métodos. Función registrarFurgon().                             |
-| Diego Castillo      | Clase `MotoReparto` — herencia y sobrescritura de métodos. Función registrarMotoReparto().                   |
+| Diego Castillo      | Clase `MotoReparto` — herencia y sobrescritura de métodos. Función registrarMotoReparto(). Debugger.         |
 | Angela Galleguillos | QA/Debugger. Función marcarVehiculoNoDisponible().                                                           |
-| María C. Riquelme   | Mantenedora del repositorio. Creación del README. Función mostrarReporteGeneral().                           |
+| María C. Riquelme   | Mantenedora del repositorio. Creación del README. Función mostrarReporteGeneral(). Debugger.                 |
 | Todo el equipo      | Pruebas, validaciones y presentación final                                                                   |
 
 ---
