@@ -58,18 +58,16 @@ public class Main {
         String marca = leerStringNoVacio("Marca: ");
         String modelo = leerStringNoVacio("Modelo: ");
         int numEjes = leerEntero("Número de ejes: ");
-            try {
-                Camion camion = new Camion(patente, marca, modelo, numEjes);
-
-             vehiculos.add(camion);
-
+        
+        try {
+            Camion camion = new Camion(patente, marca, modelo, numEjes);
+            vehiculos.add(camion);
             System.out.println("✔ Camión registrado con éxito.");
-          } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("❌ Error al registrar: " + e.getMessage());
-        // Julio
+        }
     }
 
-    // Tu método registrarFurgon
     private static void registrarFurgon() {
         System.out.println("\n--- Registro de Furgón ---");
         String patente = leerPatenteUnica();
@@ -128,7 +126,7 @@ public class Main {
         System.out.println("===============================================\n");
     }
 
-    public static void mostrarVehiculosDisponibles()
+    public static void mostrarVehiculosDisponibles() {
         System.out.println("=== LISTA DE VEHICULOS DISPONIBLES ===\n");
 
         List<Vehiculo> disponibles = new ArrayList<>();
