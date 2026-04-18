@@ -1,73 +1,31 @@
-import Vehiculo;
-import Camion;
-import Furgon;
-import MotoReparto;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
-    public static Scanner scanner = new Scanner(System.in);
-    List<Vehiculo> vehiculos = new ArrayList<>();
+    private static List<Vehiculo> vehiculos = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         int opcion;
-        llenarDatos();
 
         do {
             mostrarMenu();
+
             opcion = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcion) {
-
-                //Registrar camion
-                case 1 -> {
-                    registrarCamion();
-                }
-
-
-                //Registrar furgon
-                case 2 -> {
-                    registrarFurgon();
-                }
-
-
-                //Registrar moto
-                case 3 -> {
-                    registrarMotoReparto();
-                }
-
-
-                //Mostrar todos los vehiculos
-                case 4 -> {
-                    mostrarTodosLosVehiculos();
-                }
-
-
-                //Mostrar vehiculos disponibles
-                case 5 -> {
-                    mostrarVehiculosDisponibles();
-                }
-
-
-                //Mostrar vehiculos no disponibles
-                case 6 -> {
-                    marcarVehiculoNoDisponible();
-                }
-
-                //Mostrar reporte general
-                case 7 -> {
-                    mostrarReporteGeneral();
-                }
-
-                //salir
-                case 8 -> {
-                    salir();
-                }
+                case 1 -> registrarCamion();
+                case 2 -> registrarFurgon();
+                case 3 -> registrarMotoReparto();
+                case 4 -> mostrarTodosLosVehiculos();
+                case 5 -> mostrarVehiculosDisponibles();
+                case 6 -> marcarVehiculoNoDisponible();
+                case 7 -> mostrarReporteGeneral();
+                case 8 -> salir();
                 default -> System.out.println("Opción inválida. Elige entre 1 y 8.");
-
             }
         } while (opcion != 8);
 
@@ -94,8 +52,82 @@ public class Main {
     }
 
     public static void registrarCamion() {
+        System.out.println("\n--- Registro de Camión ---");
 
+        String patente = leerPatenteUnica();
+        String marca = leerStringNoVacio("Marca: ");
+        String modelo = leerStringNoVacio("Modelo: ");
+        int numEjes = leerEntero("Número de ejes: ");
+            try {
+                Camion camion = new Camion(patente, marca, modelo, numEjes);
+
+             vehiculos.add(camion);
+
+            System.out.println("✔ Camión registrado con éxito.");
+          } catch (IllegalArgumentException e) {
+            System.out.println("❌ Error al registrar: " + e.getMessage());
+        // Julio
     }
+
+    // Tu método registrarFurgon
+    private static void registrarFurgon() {
+        System.out.println("\n--- Registro de Furgón ---");
+        String patente = leerPatenteUnica();
+        String marca = leerStringNoVacio("Marca: ");
+        String modelo = leerStringNoVacio("Modelo: ");
+        double capacidad = leerDouble("Capacidad de carga (kg): ");
+        boolean disponible = true;
+        double volumen = leerDouble("Volumen interior (m³): ");
+
+        try {
+            Furgon furgon = new Furgon(patente, marca, modelo, capacidad, disponible, volumen);
+            vehiculos.add(furgon);
+            System.out.println(" Furgón registrado con éxito.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(" Error: " + e.getMessage());
+        }
+    }
+
+    public static void registrarMotoReparto() {
+        System.out.println("\n--- Registro de Moto de Reparto ---");
+
+        String patente = leerPatenteUnica();
+        String marca = leerStringNoVacio("Marca: ");
+        String modelo = leerStringNoVacio("Modelo: ");
+        double capacidad = leerDouble("Capacidad de carga (kg): ");
+        boolean disponible = true;
+
+        System.out.print("¿Tiene caja térmica? si/no: ");
+        String respuesta = scanner.nextLine().trim().toLowerCase();
+        boolean tieneCajaTermica = respuesta.equals("si");
+
+        try {
+            MotoReparto moto = new MotoReparto(patente, marca, modelo, capacidad, disponible, tieneCajaTermica);
+            vehiculos.add(moto);
+            System.out.println("Moto de reparto registrada con éxito.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public static void mostrarTodosLosVehiculos() {
+        System.out.println("\n===============================================");
+        System.out.println("       LISTADO COMPLETO DE VEHÍCULOS");
+        System.out.println("===============================================");
+
+        if (vehiculos.isEmpty()) {
+            System.out.println("No hay vehículos registrados en el sistema.");
+        } else {
+            for (Vehiculo v : vehiculos) {
+                // Polimorfismo en acción:
+                // Si 'v' es un Camion, llamará al mostrarDetalle() de Camion.
+                // Si 'v' es una Moto, llamará al de Moto.
+                v.mostrarDetalle();
+            }
+        }
+        System.out.println("===============================================\n");
+    }
+
     public static void mostrarVehiculosDisponibles()
         System.out.println("=== LISTA DE VEHICULOS DISPONIBLES ===\n");
 
@@ -120,13 +152,14 @@ public class Main {
         scanner.nextLine();
         return;
     }
-    public static void marcarVehiculo(){
+    
+    public static void marcarVehiculoNoDisponible() {
 
         System.out.println("=== MARCAR VEHICULO COMO NO DISPONIBLE ===\n");
 
-        List<String> disponibles = new ArrayList<>();
-        for (String vehiculo : nombreVehiculos) {
-            if (estadoVehiculo.get(vehiculo).equals("Disponible")) {
+        List<Vehiculo> disponibles = new ArrayList<>();
+        for (Vehiculo vehiculo : vehiculos) {
+            if (vehiculo.isDisponible()) {
                 disponibles.add(vehiculo);
             }
         }
@@ -137,11 +170,10 @@ public class Main {
             scanner.nextLine();
             return;
         }
+
         System.out.println("Vehiculos disponibles:");
         for (int i = 0; i < disponibles.size(); i++) {
-            String vehiculos = disponibles.get(i);
-            String marca = marcaVehiculo.get(vehiculo);
-            System.out.println((i + 1) + ". " + animal + " (" + especie + ")");
+            System.out.println((i + 1) + ". " + disponibles.get(i).getPatente());
         }
 
         System.out.print("\nElige el número del vehiculo a marcar: ");
@@ -154,9 +186,17 @@ public class Main {
             scanner.nextLine();
             return;
         }
+
+        //obtener vehiculo y se le resta 1 porque los arrays empiezan en 0
+        Vehiculo vehiculoSeleccionado = disponibles.get(seleccion - 1);
+        vehiculoSeleccionado.setDisponible(false);
+
+        System.out.println("\nEl vehículo con patente " + vehiculoSeleccionado.getPatente() + " ha sido marcado como NO disponible.");
+        System.out.println("\nPresione Enter para volver al menú...");
+        scanner.nextLine();
     }
 
-    public void mostrarReporteGeneral() {
+    public static void mostrarReporteGeneral() {
         int totalCamiones = 0, totalFurgones = 0, totalMotos = 0;
         int totalDisponibles = 0, totalNoDisponibles = 0;
 
@@ -206,7 +246,7 @@ public class Main {
             else {
                 tipo = "Moto";
             }
-
+            // Cambiar a v.mostrarDetalle()
             System.out.printf("%-12s %-12s %-15s %-15s %-10s%n",
                     v.getPatente(),
                     tipo,
@@ -220,5 +260,56 @@ public class Main {
     public static void salir() {
         System.out.println("\nCerrando sistema");
         System.out.println("Saliendo...");
+    }
+
+    // Métodos auxiliares
+    private static int leerEntero(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: debe ingresar un número entero.");
+            }
+        }
+    }
+
+    private static double leerDouble(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                return Double.parseDouble(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: debe ingresar un número válido.");
+            }
+        }
+    }
+
+    private static String leerStringNoVacio(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            String valor = scanner.nextLine().trim();
+            if (!valor.isEmpty()) return valor;
+            System.out.println("Error: este campo no puede estar vacío.");
+        }
+    }
+
+    private static boolean patenteExiste(String patente) {
+        for (Vehiculo v : vehiculos) {
+            if (v.getPatente().equalsIgnoreCase(patente)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static String leerPatenteUnica() {
+        while (true) {
+            String patente = leerStringNoVacio("Patente: ");
+            if (!patenteExiste(patente)) {
+                return patente;
+            }
+            System.out.println(" Error: ya existe un vehículo con esa patente. Ingrese otra.");
+        }
     }
 }
