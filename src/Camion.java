@@ -22,8 +22,13 @@ public class Camion extends Vehiculo {
     }
 
     @Override
+    public String getTipo() {
+        return "Camión";
+    }
+
+    @Override
     public void mostrarDetalle() {
         super.mostrarDetalle();
-        System.out.println(" | Ejes:" + numEjes + " [Tipo: CAMION]");
+        System.out.println(" | Ejes: " + numEjes);
     }
 }
