@@ -145,9 +145,10 @@ public class Main {
             return;
         }
 
-        for (int i = 0; i < disponibles.size(); i++) {
-            System.out.println((i + 1) + ". " + disponibles.get(i).getPatente());
+        for (Vehiculo v : disponibles) {
+            v.mostrarDetalle();
         }
+        
         System.out.println("\nPresione Enter para volver al menú...");
         scanner.nextLine();
         return;
