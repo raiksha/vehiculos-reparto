@@ -1,5 +1,3 @@
-package modelo;
-
 public class MotoReparto extends Vehiculo {
 
     private boolean tieneCajaTermica;
@@ -22,6 +20,6 @@ public class MotoReparto extends Vehiculo {
     @Override
     public void mostrarDetalle() {
         super.mostrarDetalle();
-        System.out.println("Caja térmica: " + (tieneCajaTermica ? "Sí" : "No"));
+        System.out.println(" | Caja térmica: " + (tieneCajaTermica ? "Sí" : "No"));
     }
 }

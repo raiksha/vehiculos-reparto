@@ -1,8 +1,3 @@
-import Vehiculo;
-import Camion;
-import Furgon;
-import MotoReparto;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,61 +9,23 @@ public class Main {
     public static void main(String[] args) {
 
         int opcion;
-        llenarDatos();
 
         do {
             mostrarMenu();
+
             opcion = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcion) {
-
-                //Registrar camion
-                case 1 -> {
-                    registrarCamion();
-                }
-
-
-                //Registrar furgon
-                case 2 -> {
-                    registrarFurgon();
-                }
-
-
-                //Registrar moto
-                case 3 -> {
-                    registrarMotoReparto();
-                }
-
-
-                //Mostrar todos los vehiculos
-                case 4 -> {
-                    mostrarTodosLosVehiculos();
-                }
-
-
-                //Mostrar vehiculos disponibles
-                case 5 -> {
-                    mostrarVehiculosDisponibles();
-                }
-
-
-                //Mostrar vehiculos no disponibles
-                case 6 -> {
-                    marcarVehiculoNoDisponible();
-                }
-
-                //Mostrar reporte general
-                case 7 -> {
-                    mostrarReporteGeneral();
-                }
-
-                //salir
-                case 8 -> {
-                    salir();
-                }
+                case 1 -> registrarCamion();
+                case 2 -> registrarFurgon();
+                case 3 -> registrarMotoReparto();
+                case 4 -> mostrarTodosLosVehiculos();
+                case 5 -> mostrarVehiculosDisponibles();
+                case 6 -> marcarVehiculoNoDisponible();
+                case 7 -> mostrarReporteGeneral();
+                case 8 -> salir();
                 default -> System.out.println("Opción inválida. Elige entre 1 y 8.");
-
             }
         } while (opcion != 8);
 
@@ -109,10 +66,33 @@ public class Main {
             System.out.println("✔ Camión registrado con éxito.");
           } catch (IllegalArgumentException e) {
             System.out.println("❌ Error al registrar: " + e.getMessage());
+        // Julio
+    }
+
+    // Tu método registrarFurgon
+    private static void registrarFurgon() {
+        System.out.println("\n--- Registro de Furgón ---");
+        String patente = leerPatenteUnica();
+        String marca = leerStringNoVacio("Marca: ");
+        String modelo = leerStringNoVacio("Modelo: ");
+        double capacidad = leerDouble("Capacidad de carga (kg): ");
+        boolean disponible = true;
+        double volumen = leerDouble("Volumen interior (m³): ");
+
+        try {
+            Furgon furgon = new Furgon(patente, marca, modelo, capacidad, disponible, volumen);
+            vehiculos.add(furgon);
+            System.out.println(" Furgón registrado con éxito.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(" Error: " + e.getMessage());
         }
     }
 
-    public static void mostrarTodosLosVehiculos(List<Vehiculo> vehiculos) {
+    public static void registrarMotoReparto() {
+        // Diego
+    }
+
+    public static void mostrarTodosLosVehiculos() {
         System.out.println("\n===============================================");
         System.out.println("       LISTADO COMPLETO DE VEHÍCULOS");
         System.out.println("===============================================");
@@ -129,14 +109,18 @@ public class Main {
         }
         System.out.println("===============================================\n");
     }
+
+    public static void mostrarVehiculosDisponibles() {
+        // Alexander
+    }
     
-    public static void marcarVehiculo(){
+    public static void marcarVehiculoNoDisponible() {
 
         System.out.println("=== MARCAR VEHICULO COMO NO DISPONIBLE ===\n");
 
-        List<String> disponibles = new ArrayList<>();
-        for (String vehiculo : nombreVehiculos) {
-            if (estadoVehiculo.get(vehiculo).equals("Disponible")) {
+        List<Vehiculo> disponibles = new ArrayList<>();
+        for (Vehiculo vehiculo : vehiculos) {
+            if (vehiculo.isDisponible()) {
                 disponibles.add(vehiculo);
             }
         }
@@ -147,11 +131,10 @@ public class Main {
             scanner.nextLine();
             return;
         }
+
         System.out.println("Vehiculos disponibles:");
         for (int i = 0; i < disponibles.size(); i++) {
-            String vehiculos = disponibles.get(i);
-            String marca = marcaVehiculo.get(vehiculo);
-            System.out.println((i + 1) + ". " + animal + " (" + especie + ")");
+            System.out.println((i + 1) + ". " + disponibles.get(i).getPatente());
         }
 
         System.out.print("\nElige el número del vehiculo a marcar: ");
@@ -164,9 +147,11 @@ public class Main {
             scanner.nextLine();
             return;
         }
+
+        // Agregar lógica para marcar el vehículo como no disponible
     }
 
-    public void mostrarReporteGeneral() {
+    public static void mostrarReporteGeneral() {
         int totalCamiones = 0, totalFurgones = 0, totalMotos = 0;
         int totalDisponibles = 0, totalNoDisponibles = 0;
 
@@ -216,7 +201,7 @@ public class Main {
             else {
                 tipo = "Moto";
             }
-
+            // Cambiar a v.mostrarDetalle()
             System.out.printf("%-12s %-12s %-15s %-15s %-10s%n",
                     v.getPatente(),
                     tipo,
@@ -232,6 +217,7 @@ public class Main {
         System.out.println("Saliendo...");
     }
 
+    // Métodos auxiliares
     private static int leerEntero(String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -281,24 +267,4 @@ public class Main {
             System.out.println(" Error: ya existe un vehículo con esa patente. Ingrese otra.");
         }
     }
-
-    // Tu método registrarFurgon
-    private static void registrarFurgon() {
-        System.out.println("\n--- Registro de Furgón ---");
-        String patente = leerPatenteUnica();
-        String marca = leerStringNoVacio("Marca: ");
-        String modelo = leerStringNoVacio("Modelo: ");
-        double capacidad = leerDouble("Capacidad de carga (kg): ");
-        double volumen = leerDouble("Volumen interior (m³): ");
-
-        try {
-            Furgon furgon = new Furgon(patente, marca, modelo, capacidad, volumen);
-            vehiculos.add(furgon);
-            System.out.println(" Furgón registrado con éxito.");
-        } catch (IllegalArgumentException e) {
-            System.out.println(" Error: " + e.getMessage());
-        }
-    }
-
-    // NOTA: El main y el menú serán agregados por el compañero encargado.
 }
