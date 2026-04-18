@@ -13,7 +13,7 @@ public class Vehiculo {
         setMarca(marca);
         setModelo(modelo);
         setCapacidadCarga(capacidadCarga);
-        this.disponible = true; // Por defecto, todo vehículo inicia disponible
+        setDisponible(disponible);
     }
 
     // --- Getters y Setters con Validaciones ---
